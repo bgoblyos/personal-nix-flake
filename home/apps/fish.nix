@@ -17,8 +17,8 @@
         end
       end
     '';
-  };
-    functions = {
+    
+	functions = {
       # Suppresses the default startup greeting
       fish_greeting = "";
 
