@@ -11,4 +11,7 @@
   ];
 
   programs.git.package = null;
+  programs.fish.package = null;
+  programs.nvim.package = null;
+
 }
