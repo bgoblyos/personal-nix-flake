@@ -6,6 +6,18 @@
 
   programs.fish = {
     enable = true;
+	# Source determinate-nix if present
+	interactiveShellInit = ''
+      # Source Nix daemon profile if nix binary is not in PATH
+      if not type -q nix
+        if test -f /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish
+          source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish
+        else if test -f /nix/var/nix/profiles/default/etc/profile.d/nix.fish
+          source /nix/var/nix/profiles/default/etc/profile.d/nix.fish
+        end
+      end
+    '';
+  };
     functions = {
       # Suppresses the default startup greeting
       fish_greeting = "";
@@ -14,7 +26,7 @@
         description = "Pull Nix flake repository and apply system/user configuration";
         body = ''
           # Define candidate paths to search in order
-          set -l candidate_dirs ~/Code/Nix/perosnal-nix-flake /etc/nixos
+          set -l candidate_dirs ~/Code/Nix/personal-nix-flake /etc/nixos
 
           set -l repo_dir ""
           for dir in $candidate_dirs
