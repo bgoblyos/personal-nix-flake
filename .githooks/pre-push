@@ -1,9 +1,9 @@
 #!/usr/bin/env bash
 set -e
 
-echo "==> Running nix flake check..."
+echo "Running nix flake check..."
 if ! nix flake check; then
     echo "x Error: 'nix flake check' failed. Aborting push."
     exit 1
 fi
-echo " Nix flake check passed."
+echo "Nix flake check passed."
