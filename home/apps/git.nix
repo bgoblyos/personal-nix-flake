@@ -3,7 +3,7 @@
 {
   programs.git = {
     enable = true;
-
+	ignores = [ ".direnv" ];
     settings = {
       user = {
         name  = "Bence Göblyös";

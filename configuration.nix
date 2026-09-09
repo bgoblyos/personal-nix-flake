@@ -97,6 +97,11 @@
   hardware.logitech.wireless.enable = true;
 
   environment.localBinInPath = true;
+  
+  # Remove default aliases
+  environment.shellAliases = {
+    ll = null;
+  };
 
   # Define a user account. Don't forget to set a password with ‘passwd’.
   users.users."bence" = {
