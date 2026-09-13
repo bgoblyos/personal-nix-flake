@@ -3,7 +3,7 @@ set -e
 
 echo "Running nix flake check..."
 if ! nix flake check; then
-    echo "x Error: 'nix flake check' failed. Aborting push."
+    echo "x Error: 'nix flake check --ass-systems' failed. Aborting push."
     exit 1
 fi
 echo "Nix flake check passed."
