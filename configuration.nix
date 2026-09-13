@@ -10,6 +10,7 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ./mounts.nix
+    ./roles/plasma.nix
     ./roles/nvidia.nix
     ./roles/syncthing.nix
     ./roles/julia.nix
@@ -55,14 +56,6 @@
     LC_TIME = "hu_HU.UTF-8";
   };
 
-  # Enable the X11 windowing system.
-  # You can disable this if you're only using the Wayland session.
-  services.xserver.enable = true;
-
-  # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.sddm.enable = true;
-  services.desktopManager.plasma6.enable = true;
-
   # Configure keymap in X11
   services.xserver.xkb = {
     layout = "hu";
@@ -97,7 +90,7 @@
   programs.fish.enable = true;
   hardware.logitech.wireless.enable = true;
 
-  environment.localBinInPath = true;
+  # environment.localBinInPath = true;
 
   # Remove default aliases
   environment.shellAliases = {
@@ -139,14 +132,11 @@
     borgmatic
     stressapptest
     fira-code
-    kdePackages.partitionmanager
-    kdePackages.kdeconnect-kde
-    kdePackages.plasma-vault
     cryptsetup
     nix
     git
     gcc
-    tree-sitter
+    #tree-sitter
   ];
 
   # Some programs need SUID wrappers, can be configured further or are
