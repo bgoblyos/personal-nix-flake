@@ -9,6 +9,8 @@
     ./apps/git.nix
     ./apps/nh.nix
     ./apps/fonts.nix
+    #./scripts/nix-sync.nix
+    ./scripts/pluto.nix
   ];
 
   home.username = "bence";
@@ -18,8 +20,9 @@
     enable = true;
     enableFishIntegration = true;
   };
+  programs.nix-index-database.comma.enable = true;
 
-  home.packages = with pkgs; [
-    comma
-  ];
+  home.sessionVariables = {
+    NIX_PATH = "nixpkgs=${pkgs.path}";
+  };
 }
