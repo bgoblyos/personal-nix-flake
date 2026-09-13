@@ -6,6 +6,7 @@
   imports = [
     ../common.nix
 	../apps/protonmail-bridge.nix
+	../apps/solaar.nix
   ];
 
   # Install GUI packages
@@ -19,4 +20,8 @@
     kicad
     yt-dlp
   ];
+
+  home.sessionVariables = {
+    NH_FLAKE = "/etc/nixos";
+  };
 }

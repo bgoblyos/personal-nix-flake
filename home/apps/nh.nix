@@ -10,8 +10,4 @@
     };
   };
 
-  home.sessionVariables = {
-    NH_FLAKE = "git+ssh://git@github.com/bgoblyos/personal-nix-flake";
-  };
-  
 }

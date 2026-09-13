@@ -1,23 +1,24 @@
 # Edit this configuration file to define what should be installed on
 # your system.  Help is available in the configuration.nix(5) man page
 # and in the NixOS manual (accessible by running ‘nixos-help’).
-
-{ config, pkgs, ... }:
-
 {
-  imports =
-    [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
-      ./mounts.nix
-      ./roles/nvidia.nix
-      ./roles/syncthing.nix
-      ./roles/julia.nix
-      ./roles/containers.nix
-	  ./roles/sdr.nix
-	  ./roles/virt.nix
-    ];
+  config,
+  pkgs,
+  ...
+}: {
+  imports = [
+    # Include the results of the hardware scan.
+    ./hardware-configuration.nix
+    ./mounts.nix
+    ./roles/nvidia.nix
+    ./roles/syncthing.nix
+    ./roles/julia.nix
+    ./roles/containers.nix
+    ./roles/sdr.nix
+    ./roles/virt.nix
+  ];
 
-  nix.settings.experimental-features = [ "flakes" "nix-command" ];
+  nix.settings.experimental-features = ["flakes" "nix-command"];
 
   # Bootloader.
   boot.loader.systemd-boot.enable = true;
@@ -97,7 +98,7 @@
   hardware.logitech.wireless.enable = true;
 
   environment.localBinInPath = true;
-  
+
   # Remove default aliases
   environment.shellAliases = {
     ll = null;
@@ -107,7 +108,7 @@
   users.users."bence" = {
     isNormalUser = true;
     description = "Bence";
-    extraGroups = [ "networkmanager" "wheel" "libvirt"];
+    extraGroups = ["networkmanager" "wheel" "libvirt"];
     shell = pkgs.fish;
   };
 
@@ -174,5 +175,4 @@
   # Before changing this value read the documentation for this option
   # (e.g. man configuration.nix or on https://nixos.org/nixos/options.html).
   system.stateVersion = "26.05"; # Did you read the comment?
-
 }

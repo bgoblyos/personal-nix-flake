@@ -26,6 +26,12 @@
       ];
     };
 
+	# Ryzen 7900-based workstation
+    homeConfigurations."bence@7900-PC" = home-manager.lib.homeManagerConfiguration {
+      pkgs = nixpkgs.legacyPackages."x86_64-linux";
+      modules = [ ./home/hosts/7900-PC.nix ];
+    };
+
     # IdeaPad Flex 5 running kinoite
     homeConfigurations."bence@flex" = home-manager.lib.homeManagerConfiguration {
       pkgs = nixpkgs.legacyPackages."x86_64-linux";
