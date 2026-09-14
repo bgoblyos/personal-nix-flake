@@ -20,8 +20,11 @@ jobs:
       - name: Update flake.lock
         id: update
         uses: DeterminateSystems/update-flake-lock@v29
-        with:
-          inputs: nixpkgs home-manager flake-utils
 
       - name: Print PR number
         run: echo Pull request number is ${{ steps.update.outputs.pull-request-number }}.
+
+      - name: Accept pull request
+        uses: hmarr/auto-approve-action@v4
+        with:
+          pull-request-number: ${{ steps.update.outputs.pull-request-number }}
