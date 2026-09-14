@@ -28,3 +28,4 @@ jobs:
         uses: hmarr/auto-approve-action@v4
         with:
           pull-request-number: ${{ steps.update.outputs.pull-request-number }}
+          github-token: ${{ secrets.GITHUB_TOKEN }}
