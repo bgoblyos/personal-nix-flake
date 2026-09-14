@@ -12,20 +12,32 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v6
 
+      - name: Generate App Token
+        id: app-token
+        uses: actions/create-github-app-token@v1
+        with:
+          app-id: ${{ secrets.APP_ID }}
+          private-key: ${{ secrets.APP_PRIVATE_KEY }}
+
       - name: Install Nix
         uses: cachix/install-nix-action@v31
         with:
           extra_nix_config: |
             access-tokens = github.com=${{ secrets.GITHUB_TOKEN }}
+
       - name: Update flake.lock
         id: update
         uses: DeterminateSystems/update-flake-lock@v29
-
-      - name: Print PR number
-        run: echo Pull request number is ${{ steps.update.outputs.pull-request-number }}.
+        with:
+          token: ${{ steps.app-token.outputs.token }}
 
       - name: Accept pull request
         uses: hmarr/auto-approve-action@v4
         with:
           pull-request-number: ${{ steps.update.outputs.pull-request-number }}
           github-token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Merge pull request
+        run: gh pr merge --squash --delete-branch "${{ steps.update.outputs.pull-request-number }}"
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
