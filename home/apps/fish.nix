@@ -1,9 +1,8 @@
-{ config, pkgs, ... }:
-
 {
-
-  home.packages = with pkgs; [ fish ];
-
+  config,
+  pkgs,
+  ...
+}: {
   programs.direnv = {
     enable = true;
     enableFishIntegration = true;
@@ -27,18 +26,18 @@
   programs.zoxide = {
     enable = true;
     enableFishIntegration = true; # Automatically injects 'z' into Fish
-    
+
     # Enable fzf integration for interactive search ('zi')
-    options = [ "--cmd z" ]; 
+    options = ["--cmd z"];
   };
 
   programs.fzf.enable = true;
 
   programs.fish = {
     enable = true;
-	# Source determinate-nix if present
-	interactiveShellInit = ''
-      # Source Nix daemon profile if nix binary is not in PATH
+
+    # Source Nix environment if it's not done already
+    interactiveShellInit = ''
       if not type -q nix
         if test -f /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish
           source /nix/var/nix/profiles/default/etc/profile.d/nix-daemon.fish
@@ -47,8 +46,8 @@
         end
       end
     '';
-    
-	functions = {
+
+    functions = {
       # Suppresses the default startup greeting
       fish_greeting = "";
 
@@ -85,7 +84,7 @@
           return 1
         '';
       };
-	};
+    };
   };
 
   programs.starship = {
@@ -94,8 +93,8 @@
 
     settings = {
       format = "$username$hostname $directory $git_branch $nix_shell $direnv $cmd_duration$line_break$character";
-      
-	  username = {
+
+      username = {
         show_always = true;
         format = "[$user]($style)";
         style_user = "bright-green"; # Matches fish_color_user brgreen
@@ -110,13 +109,13 @@
       directory = {
         format = "[$path]($style)";
         style = "green"; # Matches fish_color_cwd green
-		truncate_to_repo = false;
+        truncate_to_repo = false;
       };
 
       git_branch = {
         format = "([($symbol $branch)]($style))";
         symbol = "";
-		style = "purple";
+        style = "purple";
       };
 
       nix_shell = {
@@ -125,14 +124,14 @@
         style = "#00afff"; # Matches fish_color_param 00afff
       };
 
-	  direnv = {
-	    disabled = false;
-		format = " via [$symbol]($style)";
-		symbol = "󱁿";
-		style = "bold orange";
-	  };
+      direnv = {
+        disabled = false;
+        format = " via [$symbol]($style)";
+        symbol = "󱁿";
+        style = "bold orange";
+      };
 
-	  cmd_duration = {
+      cmd_duration = {
         min_time = 2000;
         format = " took [$duration]($style)";
         style = "bold yellow";
@@ -143,6 +142,6 @@
         success_symbol = "[>](green)";
         error_symbol = "[>]($ff00000)";
       };
-	};
+    };
   };
 }

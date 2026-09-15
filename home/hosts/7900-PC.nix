@@ -1,6 +1,4 @@
-{ pkgs, ... }:
-
-{
+{pkgs, ...}: {
   home.homeDirectory = "/home/bence";
 
   # Required for Fedora/OSTree environment integration
@@ -10,7 +8,7 @@
 
   imports = [
     ../common.nix
-	../scripts/winboot.nix
+    ../scripts/winboot.nix
   ];
 
   programs.git.package = null;
@@ -18,6 +16,4 @@
   home.sessionVariables = {
     NH_FLAKE = "/home/bence/Code/Nix/personal-nix-flake";
   };
-
-
 }
