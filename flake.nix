@@ -11,36 +11,16 @@
 
     nix-index-database.url = "github:nix-community/nix-index-database";
     nix-index-database.inputs.nixpkgs.follows = "nixpkgs";
+
+    flake-parts.url = "github:hercules-ci/flake-parts";
+    import-tree.url = "github:denful/import-tree";
   };
 
-  outputs = {
-    self,
-    nixpkgs,
-    home-manager,
-    nix-index-database,
-    ...
-  } @ inputs: {
-    # Ryzen 2700X-based workstation
-    nixosConfigurations."2700X-PC" = nixpkgs.lib.nixosSystem {
-      system = "x86_64-linux";
-      specialArgs = {inherit inputs;};
-      modules = [
-        ./configuration.nix
-        home-manager.nixosModules.home-manager
-        {
-          #home-manager.extraSpecialArgs = {inherit inputs;};
-          home-manager.useGlobalPkgs = true;
-          home-manager.useUserPackages = true;
-          home-manager.users.bence = {
-            imports = [
-              ./home/hosts/2700X-PC.nix
-              nix-index-database.hmModules.nix-index
-            ];
-          };
-        }
-      ];
-    };
-
+  outputs = inputs:
+    inputs.flake-parts.lib.mkFlake {inherit inputs;}
+    (inputs.import-tree ./modules);
+  /*
+    #
     # Ryzen 7900-based workstation
     homeConfigurations."bence@7900-PC" = home-manager.lib.homeManagerConfiguration {
       pkgs = nixpkgs.legacyPackages."x86_64-linux";
@@ -53,4 +33,5 @@
       modules = [./home/hosts/flex.nix nix-index-database.hmModules.nix-index];
     };
   };
+  */
 }
