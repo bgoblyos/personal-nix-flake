@@ -6,6 +6,7 @@
   imports = [
     ./apps/nvim.nix
     ./apps/fish.nix
+    ./apps/starship.nix
     ./apps/git.nix
     ./apps/nh.nix
     ./apps/fonts.nix
