@@ -13,6 +13,7 @@ in {
       config.flake.modules.homeManager.starship
       config.flake.modules.homeManager.git
       config.flake.modules.homeManager.gpg
+      config.flake.modules.homeManager.comma
       ../../home/common.nix
       ../../home/apps/solaar.nix
       {

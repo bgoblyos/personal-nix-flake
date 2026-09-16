@@ -13,11 +13,4 @@
 
   home.username = "bence";
   home.stateVersion = "26.05";
-
-  programs.nix-index = {
-    enable = true;
-    enableFishIntegration = true;
-  };
-
-  programs.nix-index-database.comma.enable = true;
 }
