@@ -5,7 +5,6 @@
 }: {
   imports = [
     ./apps/nvim.nix
-    ./apps/git.nix
     ./apps/nh.nix
     ./apps/fonts.nix
     ./scripts/nix-sync.nix
