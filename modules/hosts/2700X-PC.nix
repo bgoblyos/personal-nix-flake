@@ -11,6 +11,9 @@
       ../../configuration.nix
       inputs.home-manager.nixosModules.home-manager
       config.flake.modules.nixos.gpg
+      config.flake.modules.nixos.plasma
+      config.flake.modules.nixos.nvidia
+      config.flake.modules.nixos.syncthing
       {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;

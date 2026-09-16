@@ -10,9 +10,6 @@
     # Include the results of the hardware scan.
     ./hardware-configuration.nix
     ./mounts.nix
-    ./roles/plasma.nix
-    ./roles/nvidia.nix
-    ./roles/syncthing.nix
     ./roles/julia.nix
     ./roles/containers.nix
     ./roles/sdr.nix
