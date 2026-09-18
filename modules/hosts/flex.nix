@@ -9,14 +9,9 @@ in {
     inherit pkgs; # Pass instantiated pkgs
     extraSpecialArgs = {inherit inputs;};
     modules = [
-      config.flake.modules.homeManager.fish
-      config.flake.modules.homeManager.starship
-      config.flake.modules.homeManager.git
-      config.flake.modules.homeManager.gpg
-      config.flake.modules.homeManager.comma
-      config.flake.modules.homeManager.julia
-      ../../home/common.nix
-      ../../home/apps/solaar.nix
+      config.flake.modules.homeManager."suites/common"
+      config.flake.modules.homeManager."suites/julia"
+      config.flake.modules.homeManager.solaar
       {
         targets.genericLinux.enable = true;
 

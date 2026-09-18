@@ -19,19 +19,4 @@
   outputs = inputs:
     inputs.flake-parts.lib.mkFlake {inherit inputs;}
     (inputs.import-tree ./modules);
-  /*
-    #
-    # Ryzen 7900-based workstation
-    homeConfigurations."bence@7900-PC" = home-manager.lib.homeManagerConfiguration {
-      pkgs = nixpkgs.legacyPackages."x86_64-linux";
-      modules = [./home/hosts/7900-PC.nix nix-index-database.hmModules.nix-index];
-    };
-
-    # IdeaPad Flex 5 running kinoite
-    homeConfigurations."bence@flex" = home-manager.lib.homeManagerConfiguration {
-      pkgs = nixpkgs.legacyPackages."x86_64-linux";
-      modules = [./home/hosts/flex.nix nix-index-database.hmModules.nix-index];
-    };
-  };
-  */
 }
