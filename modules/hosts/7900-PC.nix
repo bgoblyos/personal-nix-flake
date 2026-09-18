@@ -14,8 +14,8 @@ in {
       config.flake.modules.homeManager.git
       config.flake.modules.homeManager.gpg
       config.flake.modules.homeManager.comma
+      config.flake.modules.homeManager.julia
       ../../home/common.nix
-      #../../home/apps/solaar.nix
       ../../home/scripts/winboot.nix
       {
         targets.genericLinux.enable = true;
@@ -25,7 +25,7 @@ in {
         home.stateVersion = "26.05";
 
         home.sessionVariables = {
-          NH_FLAKE = "/var/home/bence/Code/Nix/personal-nix-flake";
+          NH_FLAKE = "/home/bence/Code/Nix/personal-nix-flake";
         };
       }
     ];
