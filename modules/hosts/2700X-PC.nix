@@ -28,6 +28,7 @@
             config.flake.modules.homeManager.git
             config.flake.modules.homeManager.gpg
             config.flake.modules.homeManager.comma
+            config.flake.modules.homeManager.julia
             ../../home/common.nix
             ../../home/apps/protonmail-bridge.nix
             ../../home/apps/solaar.nix
