@@ -8,12 +8,17 @@
     system = "x86_64-linux";
     specialArgs = {inherit inputs;};
     modules = [
-      ../../configuration.nix
       inputs.home-manager.nixosModules.home-manager
+      config.flake.modules.nixos."2700X-PC/configuration"
+      config.flake.modules.nixos."2700X-PC/hardware"
+      config.flake.modules.nixos."2700X-PC/mounts"
       config.flake.modules.nixos.gpg
+      config.flake.modules.nixos.kvm
       config.flake.modules.nixos.plasma
       config.flake.modules.nixos.nvidia
       config.flake.modules.nixos.syncthing
+      config.flake.modules.nixos.containers
+      config.flake.modules.nixos.sdr
       {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
@@ -23,16 +28,15 @@
         home-manager.users.bence = {
           imports = [
             inputs.nix-index-database.homeModules.nix-index
-            config.flake.modules.homeManager.fish
-            config.flake.modules.homeManager.starship
-            config.flake.modules.homeManager.git
-            config.flake.modules.homeManager.gpg
-            ../../home/common.nix
-            ../../home/apps/protonmail-bridge.nix
-            ../../home/apps/solaar.nix
+            config.flake.modules.homeManager."suites/common"
+            config.flake.modules.homeManager."suites/julia"
+            config.flake.modules.homeManager.solaar
+            config.flake.modules.homeManager.protonmail-bridge
             ({pkgs, ...}: {
               home = {
+                stateVersion = "26.05";
                 homeDirectory = "/home/bence";
+                # TODO: break these into flakes
                 packages = with pkgs; [
                   thunderbird
                   librewolf
