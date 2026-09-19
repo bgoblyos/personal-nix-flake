@@ -37,8 +37,8 @@
         };
 
         nix_shell = {
-          symbol = "❄️";
-          format = " via [$symbol\\($state\\)]($style) ";
+          symbol = "󱄅";
+          format = " via [$symbol \\($state\\)]($style) ";
           style = "#00afff"; # Matches fish_color_param 00afff
         };
 
