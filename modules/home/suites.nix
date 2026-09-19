@@ -13,6 +13,8 @@ in {
       "nh"
       "scripts/nix-sync"
       "scripts/dirty"
+      "scripts/music-dl"
+      "scripts/cleanup"
     ];
   };
 
