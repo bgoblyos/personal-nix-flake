@@ -10,7 +10,7 @@
       enableFishIntegration = config.programs.fish.enable;
 
       settings = {
-        format = "$username$hostname $directory $git_branch $nix_shell $direnv $cmd_duration$line_break$character";
+        format = "$username$hostname $directory $git_branch$nix_shell$direnv$cmd_duration$status$line_break$character";
 
         username = {
           show_always = true;
@@ -31,29 +31,38 @@
         };
 
         git_branch = {
-          format = "([($symbol $branch)]($style))";
+          format = "( [($symbol $branch)]($style) )";
           symbol = "";
           style = "purple";
         };
 
         nix_shell = {
           symbol = "❄️";
-          format = " via [$symbol\\($state\\)]($style)";
+          format = " via [$symbol\\($state\\)]($style) ";
           style = "#00afff"; # Matches fish_color_param 00afff
         };
 
         direnv = {
           disabled = false;
-          format = " via [$symbol]($style)";
+          format = " via [$symbol]($style) ";
           symbol = "󱁿";
           style = "bold orange";
         };
 
         cmd_duration = {
           min_time = 2000;
-          format = " took [$duration]($style)";
+          format = " took [$duration]($style) ";
           style = "bold yellow";
           show_milliseconds = true;
+        };
+
+        status = {
+          disabled = false;
+          format = "( [$status( $common_meaning$signal_name)]($style) )";
+          recognize_signal_code = true;
+          pipestatus = true;
+          pipestatus_separator = "|";
+          pipestatus_format = " \\[$pipestatus\\] => [$status( $common_meaning$signal_name)]($style) ";
         };
 
         character = {
