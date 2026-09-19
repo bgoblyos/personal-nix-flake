@@ -11,6 +11,8 @@ in {
       "git"
       "gpg"
       "nh"
+      "scripts/nix-sync"
+      "scripts/dirty"
     ];
   };
 
@@ -19,7 +21,6 @@ in {
       "suites/cli"
       "fonts"
       "nvim"
-      "scripts/nix-sync"
     ];
   };
 

@@ -22,7 +22,10 @@
       enableFishIntegration = false; # Prevents HM from generating 'alias ll'
     };
 
-    programs.bat.enable = true;
+    programs.bat = {
+      enable = true;
+      extraPackages = [pkgs.bat-extras.batman];
+    };
 
     programs.zoxide = {
       enable = true;
@@ -41,6 +44,7 @@
         mv = "mv -iv";
         cp = "cp --reflink=auto --sparse=auto -v";
         rm = "rm -Iv";
+        man = "batman";
       };
 
       # Source Nix environment if it's not done already
