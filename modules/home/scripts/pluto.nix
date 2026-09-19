@@ -1,6 +1,6 @@
 {
   flake.modules.homeManager."scripts/pluto" = {pkgs, ...}: let
-    pluto = pkgs.julia.withPackages ["Pluto"];
+    pluto = pkgs.julia-bin.withPackages ["Pluto"];
   in {
     home.packages = [
       (pkgs.writeShellApplication {

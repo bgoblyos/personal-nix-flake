@@ -12,6 +12,8 @@ in {
       config.flake.modules.homeManager."suites/common"
       config.flake.modules.homeManager."suites/julia"
       config.flake.modules.homeManager."scripts/winboot"
+      config.flake.modules.homeManager."scripts/glsa-notify"
+      config.flake.modules.homeManager."scripts/scandoc"
       {
         targets.genericLinux.enable = true;
 

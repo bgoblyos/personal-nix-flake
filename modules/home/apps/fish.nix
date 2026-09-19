@@ -37,6 +37,12 @@
     programs.fish = {
       enable = true;
 
+      shellAliases = {
+        mv = "mv -iv";
+        cp = "cp --reflink=auto --sparse=auto -v";
+        rm = "rm -Iv";
+      };
+
       # Source Nix environment if it's not done already
       interactiveShellInit = ''
         if not type -q nix
