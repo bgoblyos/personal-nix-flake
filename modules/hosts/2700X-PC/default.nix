@@ -34,6 +34,10 @@
             config.flake.modules.homeManager.protonmail-bridge
             ({pkgs, ...}: {
               home = {
+                sessionVariables = {
+                  NH_FLAKE = "/etc/nixos";
+                };
+
                 stateVersion = "26.05";
                 homeDirectory = "/home/bence";
                 # TODO: break these into flakes
@@ -44,6 +48,7 @@
                   uv
                   kicad
                   yt-dlp
+                  mpv
                 ];
               };
             })
