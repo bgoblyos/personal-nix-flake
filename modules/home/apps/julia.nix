@@ -3,14 +3,26 @@
     pkgs,
     lib,
     ...
-  }: {
-    home.packages = with pkgs; [
-      julia-bin
-    ];
+  }: let
+    # Private Python environment
+    juliaPythonEnv = pkgs.python3.withPackages (ps:
+      with ps; [
+        matplotlib
+        numpy
+      ]);
 
-    # Ensure Julia uses standard user depot for Pkg installs
-    home.sessionVariables = {
-      JULIA_DEPOT_PATH = "$HOME/.julia";
+    # Wrapped Julia executable that injects environment variables
+    juliaWrapped = pkgs.writeShellApplication {
+      name = "julia";
+      runtimeInputs = [pkgs.julia-bin];
+      text = ''
+        export JULIA_PYTHONCALL_EXE="${juliaPythonEnv}/bin/python"
+        export JULIA_CONDAPKG_BACKEND="Null"
+        exec julia "$@"
+      '';
     };
+  in {
+    # Expose the wrapped julia executable to PATH
+    home.packages = [juliaWrapped];
   };
 }

@@ -30,6 +30,7 @@ in {
     imports = getHM [
       "julia"
       "scripts/pluto"
+      "scripts/julia-formatter"
     ];
   };
 }
