@@ -10,7 +10,7 @@
       enableFishIntegration = config.programs.fish.enable;
 
       settings = {
-        format = "$username$hostname $directory $git_branch$nix_shell$direnv$cmd_duration$status$line_break$character";
+        format = "$username$hostname $directory $git_branch$nix_shell$direnv$container$cmd_duration$status$line_break$character";
 
         username = {
           show_always = true;
@@ -28,6 +28,8 @@
           format = "[$path]($style)";
           style = "green"; # Matches fish_color_cwd green
           truncate_to_repo = false;
+          truncation_length = 10;
+          truncation_symbol = "…/";
         };
 
         git_branch = {
@@ -47,6 +49,11 @@
           format = " via [$symbol]($style) ";
           symbol = "󱁿";
           style = "bold orange";
+        };
+
+        container = {
+          disabled = false;
+          format = "( [$symbol $name]($style) )";
         };
 
         cmd_duration = {
