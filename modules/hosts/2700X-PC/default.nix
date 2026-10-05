@@ -31,6 +31,7 @@
             config.flake.modules.homeManager."suites/common"
             config.flake.modules.homeManager."suites/julia"
             config.flake.modules.homeManager."scripts/flatpak-auto-update"
+            config.flake.modules.homeManager."scripts/downloads-cleanup"
             config.flake.modules.homeManager.solaar
             config.flake.modules.homeManager.protonmail-bridge
             config.flake.modules.homeManager.libreoffice
