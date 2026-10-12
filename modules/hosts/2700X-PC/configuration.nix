@@ -14,7 +14,7 @@
     boot.loader.efi.canTouchEfiVariables = true;
 
     # Use latest kernel.
-    boot.kernelPackages = pkgs.linuxPackages;
+    boot.kernelPackages = pkgs.linuxPackages_latest;
 
     networking.hostName = "2700X-PC"; # Define your hostname.
     # networking.wireless.enable = true;  # Enables wireless support via wpa_supplicant.
