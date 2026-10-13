@@ -19,6 +19,7 @@
       config.flake.modules.nixos.syncthing
       config.flake.modules.nixos.containers
       config.flake.modules.nixos.sdr
+      config.flake.modules.nixos.steam-frame
       {
         home-manager.useGlobalPkgs = true;
         home-manager.useUserPackages = true;
