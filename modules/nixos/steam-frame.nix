@@ -12,6 +12,9 @@
       options cfg80211 ieee80211_regdom="HU"
     '';
 
+    # Disable power saving
+    networking.networkmanager.wifi.powersave = false;
+
     # Enable Steam hardware udev rules
     hardware.steam-hardware.enable = true;
 
