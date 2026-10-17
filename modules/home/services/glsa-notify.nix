@@ -1,5 +1,5 @@
 {
-  flake.modules.homeManager."scripts/glsa-notify" = {
+  flake.modules.homeManager."services/glsa-notify" = {
     pkgs,
     lib,
     ...

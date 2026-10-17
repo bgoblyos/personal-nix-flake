@@ -1,5 +1,5 @@
 {
-  flake.modules.homeManager."scripts/flatpak-auto-update" = {
+  flake.modules.homeManager."services/flatpak-auto-update" = {
     pkgs,
     lib,
     config,

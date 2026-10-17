@@ -1,5 +1,5 @@
 {
-  flake.modules.homeManager."scripts/downloads-cleanup" = {
+  flake.modules.homeManager."services/downloads-cleanup" = {
     pkgs,
     lib,
     config,
