@@ -5,7 +5,9 @@
     pkgs,
     inputs,
     ...
-  }: {
+  }: let
+    ageFile = "${config.home.homeDirectory}/.age/keys.txt";
+  in {
     # Pull in sops-nix without needing it in the host modules list
     imports = [
       inputs.sops-nix.homeManagerModules.sops
@@ -25,11 +27,14 @@
 
       sops = {
         # Set the standardized age key path
-        age.keyFile = "${config.home.homeDirectory}/.age/keys.txt";
+        age.keyFile = ageFile;
 
         # Set the secrets path from the host-provided option
         defaultSopsFile = config.local.secretsFile;
       };
+
+      # Help sops find the age key
+      home.sessionVariables.SOPS_AGE_KEY_FILE = ageFile;
     };
   };
 }
