@@ -1,8 +1,13 @@
 keys:
   - &flex age1k2dj528eshjq554w47c6e0fknr2l2665d6xt5drd5zth4hs8r5mqh86dge
+  - &7900-PC age124fhyuyka620nsr2v5qmfa2txas5vksz3uguwe6c9ygrzqzr4vas82kzdc
 
 creation_rules:
   - path_regex: modules/hosts/flex/secrets\.yaml$
     key_groups:
       - age:
           - *flex
+  - path_regex: modules/hosts/7900-PC/secrets\.yaml$
+    key_groups:
+      - age:
+          - *7900-PC

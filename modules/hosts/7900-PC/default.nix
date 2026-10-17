@@ -9,6 +9,7 @@ in {
     inherit pkgs; # Pass instantiated pkgs
     extraSpecialArgs = {inherit inputs;};
     modules = [
+      config.flake.modules.homeManager.sops
       config.flake.modules.homeManager."suites/common"
       config.flake.modules.homeManager."suites/julia"
       config.flake.modules.homeManager."services/glsa-notify"
@@ -24,6 +25,8 @@ in {
         home.sessionVariables = {
           NH_FLAKE = "/home/bence/Code/Nix/personal-nix-flake";
         };
+
+        local.secretsFile = ./secrets.yaml;
       }
     ];
   };
