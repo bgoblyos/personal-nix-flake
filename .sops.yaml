@@ -1,0 +1,8 @@
+keys:
+  - &flex age1k2dj528eshjq554w47c6e0fknr2l2665d6xt5drd5zth4hs8r5mqh86dge
+
+creation_rules:
+  - path_regex: modules/hosts/flex/secrets\.yaml$
+    key_groups:
+      - age:
+          - *flex

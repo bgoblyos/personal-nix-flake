@@ -9,6 +9,7 @@ in {
     inherit pkgs; # Pass instantiated pkgs
     extraSpecialArgs = {inherit inputs;};
     modules = [
+      config.flake.modules.homeManager."flex/secrets"
       config.flake.modules.homeManager."suites/common"
       config.flake.modules.homeManager."suites/julia"
       config.flake.modules.homeManager."services/downloads-cleanup"
