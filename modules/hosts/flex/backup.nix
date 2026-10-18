@@ -65,6 +65,8 @@
               label = "borg-rock";
             }
           ];
+
+          ssh_command = "/usr/bin/ssh"; # Force native SSH, the nixpkgs one has problems connecting
           source_directories = [
             "${home}/Documents"
             "${home}/Archive"
