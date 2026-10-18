@@ -10,6 +10,7 @@ in {
     extraSpecialArgs = {inherit inputs;};
     modules = [
       config.flake.modules.homeManager.sops
+      config.flake.modules.homeManager."flex/backup"
       config.flake.modules.homeManager."suites/common"
       config.flake.modules.homeManager."suites/julia"
       config.flake.modules.homeManager."services/downloads-cleanup"
