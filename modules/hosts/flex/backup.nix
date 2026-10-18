@@ -107,6 +107,10 @@
 
           commands = [
             {
+              before = "repository";
+              run = [failOnMetered];
+            }
+            {
               after = "configuration";
               states = ["finish"];
               run = [saveLastSuccess];
