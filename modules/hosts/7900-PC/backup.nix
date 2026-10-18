@@ -63,11 +63,72 @@
             ];
           };
 
+          commands = [
+            {
+              after = "error";
+              run = [
+                "DBUS_SESSION_BUS_ADDRESS=unix:path=/run/user/$(id -u)/bus DISPLAY=:0 notify-send --app-name borgmatic --icon state-error --urgency critical 'Backup Failed' 'Borgmatic encountered an error during execution.'"
+              ];
+            }
+          ];
+
           encryption_passphrase = "{credential file ${config.sops.secrets.borg_passphrase.path}}";
+        };
+
+        satisfactory.settings = {
+          source_directories = ["/home/bence/.var/app/com.valvesoftware.Steam/.steam/steam/steamapps/compatdata/526870/pfx/drive_c/users/steamuser/AppData/Local/FactoryGame/Saved/SaveGames"];
+          repositories = [
+            {
+              path = "ssh://borg-virt-satisfactory/./";
+              label = "borg-virt-satisfactory";
+            }
+            {
+              path = "ssh://borg-wjsz-satisfactory/./";
+              label = "borg-wjsz-satisfactory";
+            }
+          ];
+
+          skip_actions = [
+            "compact"
+            "prune"
+          ];
+
+          encryption_passphrase = "{credential file ${config.sops.secrets.borg_passphrase_satisfactory.path}}";
         };
       };
     };
 
-    sops.secrets."borg_passphrase" = {};
+    # Systemd User Service
+    systemd.user.services.borgmatic = {
+      Unit = {
+        Description = "Run borgmatic backup";
+      };
+      Service = {
+        Type = "oneshot";
+        ExecStart = "${pkgs.borgmatic}/bin/borgmatic";
+        Restart = "on-failure";
+        RestartSec = "15min";
+      };
+    };
+
+    # Systemd User Timer
+    systemd.user.timers.borgmatic = {
+      Unit = {
+        Description = "Daily flatpak updates";
+      };
+      Timer = {
+        OnCalendar = "daily";
+        Persistent = true;
+      };
+      Install = {
+        WantedBy = ["timers.target"];
+      };
+    };
+
+    # Pull in secrets
+    sops.secrets = {
+      "borg_passphrase" = {};
+      "borg_passphrase_satisfactory" = {};
+    };
   };
 }
