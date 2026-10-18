@@ -14,6 +14,8 @@ in {
       config.flake.modules.homeManager."suites/common"
       config.flake.modules.homeManager."suites/julia"
       config.flake.modules.homeManager."services/glsa-notify"
+      config.flake.modules.homeManager."services/flatpak-auto-update"
+      config.flake.modules.homeManager."services/downloads-cleanup"
       config.flake.modules.homeManager."scripts/winboot"
       config.flake.modules.homeManager."scripts/scandoc"
       {
