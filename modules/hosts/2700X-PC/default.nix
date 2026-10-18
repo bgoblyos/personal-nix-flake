@@ -30,6 +30,8 @@
         home-manager.users.bence = {
           imports = [
             inputs.nix-index-database.homeModules.nix-index
+            config.flake.modules.homeManager.sops
+            config.flake.modules.homeManager."2700X-PC/backup"
             config.flake.modules.homeManager."suites/common"
             config.flake.modules.homeManager."suites/julia"
             config.flake.modules.homeManager."services/flatpak-auto-update"
@@ -38,6 +40,9 @@
             config.flake.modules.homeManager.protonmail-bridge
             config.flake.modules.homeManager.libreoffice
             ({pkgs, ...}: {
+              # Set up local secret
+              local.secretsFile = ./secrets.yaml;
+
               home = {
                 sessionVariables = {
                   NH_FLAKE = "/etc/nixos";
