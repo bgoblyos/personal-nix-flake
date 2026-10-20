@@ -15,6 +15,7 @@ in {
       "scripts/dirty"
       "scripts/music-dl"
       "scripts/cleanup"
+      "scripts/journal"
     ];
   };
 
