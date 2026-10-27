@@ -145,7 +145,7 @@
     # Systemd User Timer
     systemd.user.timers.borgmatic = {
       Unit = {
-        Description = "Daily flatpak updates";
+        Description = "Daily borgmatic backup";
       };
       Timer = {
         OnCalendar = "daily";
