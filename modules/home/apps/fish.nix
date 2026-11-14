@@ -45,6 +45,7 @@
         cp = "cp --reflink=auto --sparse=auto -v";
         rm = "rm -Iv";
         man = "batman";
+        o = "xdg-open";
       };
 
       # Source Nix environment if it's not done already
